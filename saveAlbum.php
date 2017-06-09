@@ -69,7 +69,7 @@
     $conn = null;
 
     //step 6 - redirect to the albums page
-    //header('location:albums.php');
+    header('location:albums.php');
 ?>
 </body>
 

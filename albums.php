@@ -28,7 +28,8 @@ require_once('header.php');
             <tr><th>Title</th>
                 <th>Year</th>
                 <th>Artist</th>
-                <th>Genre</th>';
+                <th>Genre</th>
+                <th>Cover Image</th>';
 
         if (!empty($_SESSION['email'])){
             echo '<th>Edit</th>
@@ -42,7 +43,8 @@ require_once('header.php');
             echo '<tr><td>'.$album['title'].'</td>
                       <td>'.$album['year'].'</td>
                       <td>'.$album['artist'].'</td>
-                      <td>'.$album['genre'].'</td>';
+                      <td>'.$album['genre'].'</td>
+                      <td><img height="50" src='.$album['coverFile'].'></td>';
 
             //only show the edit and delete links if these are valid, logged in users
             if (!empty($_SESSION['email'])){
