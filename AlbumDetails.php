@@ -16,6 +16,7 @@
             $year = null;
             $artist = null;
             $genrePicked = null;
+            $coverFile = null;
 
             // if the albumID exists, it is an edit situation and we need to
             //load the album from the DB
@@ -34,6 +35,7 @@
                 $year = $album['year'];
                 $artist = $album['artist'];
                 $genrePicked = $album['genre'];
+                $coverFile = $album['coverFile'];
             }
         ?>
 
@@ -101,6 +103,8 @@
             <button class="btn btn-success col-sm-offset-2">Save</button>
 
         </form>
+
+        <img height="200" src=<?php echo $coverFile?>>
 
     </main>
 

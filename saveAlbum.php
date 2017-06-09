@@ -16,22 +16,28 @@
     $coverFileType = $_FILES['coverFile']['type'];
     $coverFileTmpLocation = $_FILES['coverFile']['tmp_name'];
 
-    echo 'File name:'.$coverFileName.'<br />';
-    echo 'File type:'.$coverFileType.'<br />';
-    echo 'File temp name:'.$coverFileTmpLocation.'<br />';
-    echo 'The real file type is: '.mime_content_type($coverFileTmpLocation);
-
-    //Check to ensure that the file uploaded is an image
-    $validFileTypes = ['image/jpg','image/png','image/svg','image/gif','image/jpeg'];
-    $fileType = mime_content_type($coverFileTmpLocation);
-
-    //store the file on our server
-    if (in_array($fileType, $validFileTypes))
+    //check if the $fileName is null, but there is an entry in the DB
+    if (!empty($albumID) && empty($coverFileName))
     {
-        $fileName = "uploads/".uniqid("",true)."-".$coverFileName;
-        move_uploaded_file($coverFileTmpLocation, $fileName);
+        require ('db.php');
+        $sql = "SELECT coverFile FROM albums WHERE albumID = :albumID";
+        $cmd = $conn->prepare($sql);
+        $cmd->bindParam(':albumID',$albumID, PDO::PARAM_INT);
+        $cmd->execute();
+        $file = $cmd->fetch();
+        $fileName = $file['coverFile'];
     }
+    else {
+        //Check to ensure that the file uploaded is an image
+        $validFileTypes = ['image/jpg', 'image/png', 'image/svg', 'image/gif', 'image/jpeg'];
+        $fileType = mime_content_type($coverFileTmpLocation);
 
+        //store the file on our server
+        if (in_array($fileType, $validFileTypes)) {
+            $fileName = "uploads/" . uniqid("", true) . "-" . $coverFileName;
+            move_uploaded_file($coverFileTmpLocation, $fileName);
+        }
+    }
 
     //step 1 - connect to the database
     require_once ('db.php');
@@ -49,7 +55,6 @@
         $sql = "INSERT INTO albums (title,   year,  artist,  genre, coverFile) 
                         VALUES (:title, :year, :artist, :genre, :coverFile);";
     }
-
 
     //step 3 - prepare the SQL command and bind the arguments to prevent SQL injection
     $cmd = $conn->prepare($sql);
