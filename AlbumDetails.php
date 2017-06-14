@@ -22,7 +22,7 @@
             //load the album from the DB
             if (!empty($albumID))
             {
-                require_once('db.php');
+                require('db.php');
 
                 $sql = "SELECT * FROM albums WHERE albumID = :albumID";
                 $cmd = $conn->prepare($sql);
@@ -63,8 +63,7 @@
                 <select name="genre" id="genre">
                     <?php
                         //Step 1 - connect to the DB
-                        $conn = new PDO('mysql:host=localhost;dbname=php','root','admin');
-                        $conn->setAttribute(PDO::ERRMODE_EXCEPTION);
+                        require('db.php');
 
                         //Step 2 - create the SQL statement
                         $sql = "SELECT * FROM genres";

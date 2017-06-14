@@ -9,6 +9,8 @@ require_once('header.php');
     <?php
         if (!empty($_GET['invalid']))
             echo '<div class="alert alert-danger" id="message">Either email or password was incorrect</div>';
+        else if (!empty($_GET['pwReset']))
+            echo '<div class="alert alert-info" id="message">Please check your email for the reset password</div>';
         else
             echo '<div class="alert alert-info" id="message">Please log into your account</div>';
     ?>

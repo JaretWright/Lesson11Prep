@@ -1,4 +1,5 @@
 <?php
+$pageTitle = 'Forgot Password';
 require_once ('header.php');
 ?>
 <main class="container">

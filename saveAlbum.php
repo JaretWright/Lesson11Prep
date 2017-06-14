@@ -31,6 +31,7 @@
         //Check to ensure that the file uploaded is an image
         $validFileTypes = ['image/jpg', 'image/png', 'image/svg', 'image/gif', 'image/jpeg'];
         $fileType = mime_content_type($coverFileTmpLocation);
+        echo 'file type is :'.$fileType.'<br />';
 
         //store the file on our server
         if (in_array($fileType, $validFileTypes)) {
