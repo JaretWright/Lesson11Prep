@@ -10,6 +10,8 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
+    <link rel="stylesheet" href="css/styles.css">
+
 </head>
 <body>
 
@@ -25,15 +27,18 @@
         if (empty($_SESSION['email']))
         {
             echo '<li><a href="registration.php">Register</a></li>
-                  <li><a href="login.php">Login</a></li>';
+                  <li><a href="login.php">Login</a></li> 
+                  </ul>';
         }
 
         //private / logged in links
         else
         {
             echo '<li><a href="AlbumDetails.php">Add new album</a></li>
-                  <li><a href="logout.php">Logout</a></li>';
+                  <li><a href="logout.php">Logout</a></li>
+                  </ul>';
+            echo '<div class="navbar-text pull-right">' . $_SESSION['userName'] . '</div>';
         }
         ?>
-    </ul>
 </nav>
+

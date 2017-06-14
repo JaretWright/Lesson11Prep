@@ -30,6 +30,8 @@ require_once('header.php');
         </fieldset>
 
     </form>
+
+    <p><a href="forgotPassword.php">Forgot my password</a></p>
 </main>
 
 <?php require_once('footer.php') ?>
